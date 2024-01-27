@@ -1,8 +1,9 @@
 //external imports
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //schema
-const departmentSchema = new mongoose.Schema({
+const departmentSchema = new Schema({
     name: {
         type: String,
         required: true,

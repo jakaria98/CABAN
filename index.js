@@ -3,10 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-// internal imports
-const loginRoute = require('./routes/loginRoute');
-const departmentRouter = require('./routes/department');
-const employeeTypeRouter = require('./routes/employeePost');
+// route imports
+const loginRoute = require('./routes/loginRouter');
+const departmentRouter = require('./routes/departmentRouter');
+const employeeTypeRouter = require('./routes/employeePostRouter');
+
+//error handler import
+const errorHandler = require('./middleware/common/errorHandler');
 
 const app = express();
 dotenv.config();
@@ -17,7 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 app.use('/api/user', loginRoute);
 app.use('/api/department', departmentRouter);
-app.use('/api/employeeType', employeeTypeRouter);
+app.use('/api/employeePost', employeeTypeRouter);
+
+//error handler
+app.use(errorHandler);
 
 
 //database connection

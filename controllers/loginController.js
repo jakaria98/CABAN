@@ -1,54 +1,84 @@
+//external imports
+const jwt = require('jsonwebtoken');
+const { createError } = require('http-errors');
+const bcrypt = require('bcrypt');
+
 //internal imports
 const User = require('../models/Employee');
 
+//login controller
 const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        // 1) Check if email and password exist
-        if (!email || !password) {
-            return next(new AppError('Please provide email and password!', 400));
+        //check if email and password exist
+        const user = await User.findOne({ email });
+        if (!user) {
+            throw createError(401, 'Invalid credentials');
+        } else {
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                throw createError(401, 'Invalid credentials');
+            } else {
+                const userObject = {
+                    _id: user._id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    role: user.role,
+                    employeeId: user.employeeId,
+                    status: user.status,
+                };
+                createSendToken(userObject, 200, res);
+            }
         }
-        // 2) Check if user exists && password is correct
-        const user = await User.findOne({ email }).select('+password');
-        if (!user || !(await user.correctPassword(password, user.password))) {
-            return next(new AppError('Incorrect email or password', 401));
-        }
-        // 3) If everything ok, send token to client
-        createSendToken(user, 200, res);
     } catch (error) {
-        next(error);
+        throw createError(500, 'Server Error');
     }
-}
+};
+
+//register controller
 const register = async (req, res, next) => {
     try {
-        const { name, email, password, passwordConfirm } = req.body;
+        const { password } = req.body;
+        //hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({
-            name,
-            email,
-            password,
-            passwordConfirm
+            ...req.body,
+            password: hashedPassword,
         });
-        createSendToken(newUser, 201, res);
+        user = await newUser.save();
+        res.status(201).json({
+            message: 'success',
+            user,
+        });
     } catch (error) {
-        next(error);
+        throw createError(500, 'Server Error');
     }
-}
+};
+
+//create and send token and save in cookie
 const createSendToken = (user, statusCode, res) => {
-    const token = signToken(user._id);
+    const token = signToken(user);
+    //set cookie in httpOnly cookie
+    res.cookie(process.env.COOKIE_NAME, token, {
+        httpOnly: true,
+        maxAge: process.env.JWT_EXPIRES_IN,
+        signed: true,
+    });
+    // set locals
+    res.locals.loggedInUser = userObject;
     res.status(statusCode).json({
-        status: 'success',
-        token,
-        data: {
-            user
-        }
+        message: 'success',
     });
-}
-const signToken = id => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
+};
+
+//sign token
+const signToken = (user) => {
+    return jwt.sign(user, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN,
     });
-}
+};
 module.exports = {
     login,
-    register
-}   
+    register,
+};
