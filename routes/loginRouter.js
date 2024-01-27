@@ -8,10 +8,18 @@ const {
     registerValidator,
     registerValidationHandler,
 } = require('../middleware/user/registerValidator');
+const { checkLogin, checkRole } = require('../middleware/common/checkLogin');
 
 const router = express.Router();
 
 router.post('/login', loginValidator, loginValidationHandler, login);
-router.post('/register', registerValidator, registerValidationHandler, register);
+router.post(
+    '/register',
+    checkLogin,
+    checkRole(['admin']),
+    registerValidator,
+    registerValidationHandler,
+    register
+);
 
 module.exports = router;

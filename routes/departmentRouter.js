@@ -8,11 +8,12 @@ const {
     departmentValidator,
     departmentValidationHandler,
 } = require('../middleware/department/departmentValidators');
+const { checkLogin, checkRole } = require('../middleware/common/checkLogin');
 
 //get all department
-router.get('/', getAllDepartment);
+router.get('/',checkLogin, checkRole(["Admin"]), getAllDepartment);
 
 //add department
-router.post('/', departmentValidator, departmentValidationHandler, addDepartment);
+router.post('/', checkLogin, checkRole(["Admin"]),departmentValidator, departmentValidationHandler, addDepartment);
 
 module.exports = router;

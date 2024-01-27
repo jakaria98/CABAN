@@ -7,7 +7,15 @@ const {
     employeePostValidators,
     handleEmployeePostValidationErrors,
 } = require('../middleware/employeePost/employeePostValidators');
+const { checkLogin, checkRole } = require('../middleware/common/checkLogin');
 
 const router = express.Router();
-router.post('/', employeePostValidators, handleEmployeePostValidationErrors, addEmployeePost);
+router.post(
+    '/',
+    checkLogin,
+    checkRole(['admin']),
+    employeePostValidators,
+    handleEmployeePostValidationErrors,
+    addEmployeePost
+);
 module.exports = router;
