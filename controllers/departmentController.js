@@ -1,5 +1,5 @@
 //external imports
-const { createError } = require('http-errors');
+const createError = require('http-errors');
 
 //internal imports
 const Department = require('../models/Department');

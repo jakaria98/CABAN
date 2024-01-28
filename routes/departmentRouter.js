@@ -14,6 +14,6 @@ const { checkLogin, checkRole } = require('../middleware/common/checkLogin');
 router.get('/',checkLogin, checkRole(["Admin"]), getAllDepartment);
 
 //add department
-router.post('/', checkLogin, checkRole(["Admin"]),departmentValidator, departmentValidationHandler, addDepartment);
+router.post('/', departmentValidator, departmentValidationHandler, addDepartment);
 
 module.exports = router;

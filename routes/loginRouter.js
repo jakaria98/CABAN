@@ -14,12 +14,10 @@ const router = express.Router();
 
 router.post('/login', loginValidator, loginValidationHandler, login);
 router.post(
-    '/register',
-    checkLogin,
-    checkRole(['admin']),
+    '/register/:department/:employeePost',
     registerValidator,
     registerValidationHandler,
     register
-);
+); //check for logged in user and role
 
 module.exports = router;

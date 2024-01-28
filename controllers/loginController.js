@@ -1,6 +1,6 @@
 //external imports
 const jwt = require('jsonwebtoken');
-const { createError } = require('http-errors');
+const createError = require('http-errors');
 const bcrypt = require('bcrypt');
 
 //internal imports
@@ -39,11 +39,20 @@ const login = async (req, res, next) => {
 //register controller
 const register = async (req, res, next) => {
     try {
-        const { password } = req.body;
+        const { firstName, password, lastName, email, phoneNumber, employeeId, role, status } =
+            req.body;
+        console.log(req.body);
         //hash password
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({
-            ...req.body,
+        const newUser = new User({
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            employeeId,
+            role,
+            status,
+            ...req.params,
             password: hashedPassword,
         });
         user = await newUser.save();
@@ -69,6 +78,7 @@ const createSendToken = (user, statusCode, res) => {
     res.locals.loggedInUser = userObject;
     res.status(statusCode).json({
         message: 'success',
+        token,
     });
 };
 
@@ -78,7 +88,13 @@ const signToken = (user) => {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
 };
+
+//logout
+const logout = (req, res, next) => {
+    res.clearCookie(process.env.COOKIE_NAME);
+};
 module.exports = {
     login,
     register,
+    logout,
 };

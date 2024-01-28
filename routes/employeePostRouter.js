@@ -10,10 +10,10 @@ const {
 const { checkLogin, checkRole } = require('../middleware/common/checkLogin');
 
 const router = express.Router();
+
+//add employee post
 router.post(
-    '/',
-    checkLogin,
-    checkRole(['admin']),
+    '/:department',
     employeePostValidators,
     handleEmployeePostValidationErrors,
     addEmployeePost

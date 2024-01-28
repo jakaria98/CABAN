@@ -33,13 +33,6 @@ const registerValidator = [
     }),
 
     check('employeeId').isLength({ min: 6 }).withMessage('Employee ID is required').trim(),
-    
-    check('employeePost').isLength({ min: 1 }).withMessage('Employee position is required').trim(),
-
-    check('employeeDepartment')
-        .isLength({ min: 1 })
-        .withMessage('Employee department is required')
-        .trim(),
         
     check('phoneNumber')
         .isLength({ min: 10, max: 10 })
