@@ -8,10 +8,11 @@ const loginValidator = [
 
 const loginValidationHandler = (req, res, next) => {
     const errors = validationResult(req);
+    const mappedErrors = errors.mapped();
     if (!errors.isEmpty()) {
         return res.status(400).json({
             message: 'Validation failed',
-            errors: errors.array(),
+            errors: mappedErrors,
         });
     }
     next();

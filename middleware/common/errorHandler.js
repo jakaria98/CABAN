@@ -1,9 +1,7 @@
 const createError = require('http-errors');
 const errorHandler = (err, req, res, next) => {
-    if (err instanceof createError.HttpError) {
-        res.status(err.statusCode).send(err.message);
-    } else {
-        res.status(500).send('Something went wrong');
-    }
+    res.status(err.status || 500).json({
+        message: err.message || 'Internal Server Error',
+    });
 };
 module.exports = errorHandler;

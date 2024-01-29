@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 // route imports
 const loginRoute = require('./routes/loginRouter');
@@ -17,6 +18,9 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Enable CORS for all routes
+app.use(cors());
 
 // parse cookies
 app.use(cookieParser(process.env.COOKIE_SECRET));

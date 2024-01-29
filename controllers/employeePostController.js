@@ -28,7 +28,7 @@ const addEmployeePost = async (req, res, next) => {
             }
         }
     } catch (error) {
-        createError(500, 'Server error');
+        next(error);
     }
 };
 
@@ -41,7 +41,7 @@ const getEmployeePosts = async (req, res, next) => {
             employeePosts,
         });
     } catch (error) {
-        createError(500, 'Server error');
+         next(error);
     }
 };
 

@@ -10,7 +10,7 @@ const getAllDepartment = async (req, res, next) => {
         const departments = await Department.find();
         res.status(200).json({ departments });
     } catch (error) {
-        console.log(error);
+         next(error);
     }
 };
 
@@ -22,8 +22,7 @@ const addDepartment = async (req, res, next) => {
         await newDepartment.save();
         res.status(200).json({ message: 'Department added successfully' });
     } catch (error) {
-        console.log(error);
-        throw createError(500, 'Server error');
+         next(error);
     }
 };
 module.exports = { getAllDepartment, addDepartment };

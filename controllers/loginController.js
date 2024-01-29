@@ -11,7 +11,7 @@ const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         //check if email and password exist
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: email });
         if (!user) {
             throw createError(401, 'Invalid credentials');
         } else {
@@ -32,7 +32,7 @@ const login = async (req, res, next) => {
             }
         }
     } catch (error) {
-        throw createError(500, 'Server Error');
+         next(error);
     }
 };
 
@@ -61,24 +61,24 @@ const register = async (req, res, next) => {
             user,
         });
     } catch (error) {
-        throw createError(500, 'Server Error');
+         next(error);
     }
 };
 
 //create and send token and save in cookie
 const createSendToken = (user, statusCode, res) => {
     const token = signToken(user);
+
     //set cookie in httpOnly cookie
+    
     res.cookie(process.env.COOKIE_NAME, token, {
         httpOnly: true,
-        maxAge: process.env.JWT_EXPIRES_IN,
+        maxAge: parseInt(process.env.JWT_EXPIRES_IN),
         signed: true,
     });
-    // set locals
-    res.locals.loggedInUser = userObject;
     res.status(statusCode).json({
         message: 'success',
-        token,
+        token: `Bearer ${token}`,
     });
 };
 
