@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Login from '../components/Login';
+import setToken from '../utils/setToken';
 
 const LoginPage = () => {
     const [userLoginInfo, setUserLoginInfo] = useState({
@@ -18,8 +19,8 @@ const LoginPage = () => {
         Axios.post('http://localhost:3000/api/user/login', userLoginInfo)
             .then((res) => {
                 console.log(res.data);
-
-                //navigate('/dashboard');
+                setToken(res.data.token);
+                navigate('/dashboard');
             })
             .catch((err) => {
                 console.log(err);

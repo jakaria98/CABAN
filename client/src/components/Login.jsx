@@ -1,10 +1,8 @@
 import myStyle from './LoginStyle';
 import React, { useEffect } from 'react';
-import { UserInfoContext } from '../contexts/userInfoContext.jsx';
 
 const Login = ({ user, handleChange, submitHandle }) => {
     let { error } = user;
-    console.log(error);
     return (
         <section className="vh-100" style={myStyle.sectionStyle}>
             <div className="container py-5 h-100">

@@ -32,7 +32,7 @@ const login = async (req, res, next) => {
             }
         }
     } catch (error) {
-         next(error);
+        next(error);
     }
 };
 
@@ -61,7 +61,7 @@ const register = async (req, res, next) => {
             user,
         });
     } catch (error) {
-         next(error);
+        next(error);
     }
 };
 
@@ -70,7 +70,7 @@ const createSendToken = (user, statusCode, res) => {
     const token = signToken(user);
 
     //set cookie in httpOnly cookie
-    
+
     res.cookie(process.env.COOKIE_NAME, token, {
         httpOnly: true,
         maxAge: parseInt(process.env.JWT_EXPIRES_IN),
@@ -92,6 +92,9 @@ const signToken = (user) => {
 //logout
 const logout = (req, res, next) => {
     res.clearCookie(process.env.COOKIE_NAME);
+    res.status(200).json({
+        message: 'success',
+    });
 };
 module.exports = {
     login,
