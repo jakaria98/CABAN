@@ -18,7 +18,7 @@ const LoginPage = () => {
         e.preventDefault();
         Axios.post('http://localhost:3000/api/user/login', userLoginInfo)
             .then((res) => {
-                console.log(res.data);
+                console.log(res);
                 setToken(res.data.token);
                 navigate('/dashboard');
             })

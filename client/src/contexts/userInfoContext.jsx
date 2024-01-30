@@ -1,37 +1,22 @@
 import React, { createContext, useEffect, useState } from 'react';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
+
 export const UserInfoContext = createContext();
 
 const UserInfoProvider = (props) => {
-    const [userLoginInfo, setUserLoginInfo] = useState({
-        email: '',
-        password: '',
-    });
-    const navigate = useNavigate();
-    const loginChange = (e) => {
-        setUserLoginInfo({ ...userLoginInfo, [e.target.name]: e.target.value });
-    };
-    const submitForm = (e) => {
-        e.preventDefault();
-        Axios.post('http://localhost:3000/api/user/login', userLoginInfo)
-            .then((res) => {
-                console.log(res);
+    const [cookie, setCookie] = useState({});
+    const myCookieValue = Cookies.get('CABAN');
+    console.log(myCookieValue);
 
-                navigate('/dashboard');
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    useEffect(() => {
+        const myCookieValue = Cookies.get('CABAN');
+        console.log(myCookieValue);
+        setCookie(myCookieValue);
+    }, []);
 
-    console.log(userLoginInfo);
-
-    return (
-        <UserInfoContext.Provider value={{ userLoginInfo, loginChange, submitForm }}>
-            {props.children}
-        </UserInfoContext.Provider>
-    );
+    return <UserInfoContext.Provider value={{ cookie }}>{props.children}</UserInfoContext.Provider>;
 };
 
 export default UserInfoProvider;

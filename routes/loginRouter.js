@@ -15,6 +15,8 @@ const router = express.Router();
 router.post('/login', loginValidator, loginValidationHandler, login);
 router.post(
     '/register/:department/:employeePost',
+    checkLogin,
+    checkRole(['admin']),
     registerValidator,
     registerValidationHandler,
     register

@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
 // route imports
 const loginRoute = require('./routes/loginRouter');
 const departmentRouter = require('./routes/departmentRouter');
