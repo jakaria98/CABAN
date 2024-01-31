@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 const Logout = () => {
     const navigate = useNavigate();
     const logout = () => {
-        Axios.post('http://localhost:3000/api/user/logout')
+        Axios.get('https://api.checkwx.com/metar/EDDM/decoded')
             .then((res) => {
-                console.log('logout');
-                delete Axios.defaults.headers.common['Authorization'];
-                navigate('/');
+                console.log(res);
+                // delete Axios.defaults.headers.common['Authorization'];
+                // navigate('/');
             })
             .catch((err) => {
                 console.log(err);

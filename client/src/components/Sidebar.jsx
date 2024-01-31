@@ -42,7 +42,7 @@ const Sidebar = () => {
                         <li className="nav-item btn btn-light">
                             <a
                                 className="nav-link fw-bold font-monospace text-body-secondary"
-                                href="#"
+                                href="/weather"
                             >
                                 WEATHER
                             </a>
@@ -113,4 +113,8 @@ export default Sidebar;
 //             <h2>Main Content</h2>
 //         </main>
 //     </div>
+
+// <main className="ms-sm-auto col-lg-10 px-md-4">
+
+// </main>
 // </div>

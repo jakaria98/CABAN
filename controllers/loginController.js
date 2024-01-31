@@ -70,7 +70,7 @@ const createSendToken = (user, statusCode, res) => {
     const token = signToken(user);
 
     //set cookie in httpOnly cookie
-    res.cookie(process.env.COOKIE_NAME, token, {
+    res.cookie(process.env.COOKIE_NAME, `Bearer ${token}`, {
         httpOnly: true,
         maxAge: parseInt(process.env.JWT_EXPIRES_IN),
         signed: true,
@@ -89,16 +89,17 @@ const signToken = (user) => {
 
 //logout
 const logout = (req, res, next) => {
-    // let cookies = Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
-    // if (cookies) {
-    //     token = cookies[process.env.COOKIE_NAME];
-    //     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    //     console.log(decoded);
-    // }
-    res.clearCookie(process.env.COOKIE_NAME);
-    res.status(200).json({
-        message: 'success',
-    });
+    let cookies = Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
+    console.log(cookies);
+    if (cookies) {
+        token = cookies[process.env.COOKIE_NAME];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(decoded);
+    }
+    // res.clearCookie(process.env.COOKIE_NAME);
+    // res.status(200).json({
+    //     message: 'success',
+    // });
 };
 module.exports = {
     login,
