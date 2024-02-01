@@ -2,8 +2,8 @@ const Sidebar = () => {
     return (
         <>
             <nav
-                className="col-md-5 bg-light col-lg-2 d-md-flex flex-md-column justify-content-center position-absolute"
-                style={{ height: '100vh' }}
+                className="col-md-5 bg-light col-lg-2 d-md-flex flex-md-column justify-content-center position-fixed"
+                style={{ height: '100vh', maxWidth: '13rem', minWidth: '8rem' }}
             >
                 <div className="position-sticky ">
                     <ul className="nav flex-column">

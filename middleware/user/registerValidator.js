@@ -6,7 +6,7 @@ const registerValidator = [
     check('firstName')
         .isLength({ min: 1 })
         .withMessage('First name is required')
-        .isAlpha('en-US', { ignore: ' -' })
+        .isAlpha('en-US', { ignore: '-' })
         .withMessage('Name must not contain anything other than alphabet')
         .trim(),
 
@@ -33,6 +33,8 @@ const registerValidator = [
     }),
 
     check('employeeId').isLength({ min: 6 }).withMessage('Employee ID is required').trim(),
+    check('department').isLength({ min: 1 }).withMessage('Select a Department').trim(),
+    check('employeePost').isLength({ min: 1 }).withMessage('Select a Designation').trim(),
         
     check('phoneNumber')
         .isLength({ min: 10, max: 10 })

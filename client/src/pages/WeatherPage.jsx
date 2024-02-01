@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WeatherCard from '../components/WeatherCard';
+import PageTitle from '../components/PageTitle';
 const WeatherPage = () => {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -29,13 +30,7 @@ const WeatherPage = () => {
 
     return (
         <main className="ms-sm-auto col-lg-10 px-md-4">
-            <div className="card ">
-                <div className="card-body">
-                    <h1 className="card-title text-center font-monospace text-body-secondary fw-bold">
-                        Weather
-                    </h1>
-                </div>
-            </div>
+            <PageTitle title="Weather" />
             <div className="row row-cols-1 row-cols-md-3 d-flex justify-content-between mt-5">
                 <WeatherCard />
                 <WeatherCard />

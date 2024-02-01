@@ -13,11 +13,11 @@ const login = async (req, res, next) => {
         //check if email and password exist
         const user = await User.findOne({ email: email });
         if (!user) {
-            throw createError(401, 'Invalid credentials');
+            throw createError(401, 'Invalid Credentials');
         } else {
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                throw createError(401, 'Invalid credentials');
+                throw createError(401, 'Invalid Credentials');
             } else {
                 const userObject = {
                     _id: user._id,
@@ -39,8 +39,18 @@ const login = async (req, res, next) => {
 //register controller
 const register = async (req, res, next) => {
     try {
-        const { firstName, password, lastName, email, phoneNumber, employeeId, role, status } =
-            req.body;
+        const {
+            firstName,
+            password,
+            lastName,
+            email,
+            phoneNumber,
+            employeeId,
+            role,
+            status,
+            department,
+            employeePost,
+        } = req.body;
         console.log(req.body);
         //hash password
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -52,7 +62,8 @@ const register = async (req, res, next) => {
             employeeId,
             role,
             status,
-            ...req.params,
+            department,
+            employeePost,
             password: hashedPassword,
         });
         user = await newUser.save();
