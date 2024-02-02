@@ -3,7 +3,7 @@ const PageTitle = ({ title }) => {
         <>
             <br />
             <br />
-            <div className="card ">
+            <div className="card " style={{ backgroundColor: '#f4f4f4', border: 'none' }}>
                 <div className="card-body">
                     <h1 className="card-title text-center font-monospace text-body-secondary fw-bold">
                         {title}

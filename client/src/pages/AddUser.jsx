@@ -19,7 +19,7 @@ const AddUser = () => {
                     name="firstName"
                     label="First Name"
                     value=""
-                    onChange={onChange}
+                    onChange
                     error=""
                     type="text"
                     placeholder="Enter Your First Name"
@@ -28,7 +28,7 @@ const AddUser = () => {
                     name="lastName"
                     label="Last Name"
                     value=""
-                    onChange={onChange}
+                    onChange
                     error=""
                     type="text"
                     placeholder="Enter Your Last Name"
@@ -37,10 +37,28 @@ const AddUser = () => {
                     name="email"
                     label="Email"
                     value=""
-                    onChange={onChange}
+                    onChange
                     error=""
                     type="email"
                     placeholder="Enter Your Email"
+                />
+                <Input
+                    name="phoneNumber"
+                    label="Phone"
+                    value=""
+                    onChange
+                    error=""
+                    type="text"
+                    placeholder="Enter Your Phone Number"
+                />
+                <Input
+                    name="employeeId"
+                    label="Employee ID"
+                    value=""
+                    onChange
+                    error=""
+                    type="text"
+                    placeholder="Enter Your Employee ID"
                 />
 
                 <DropdownInput
@@ -57,6 +75,7 @@ const AddUser = () => {
                     name="employeePost"
                     onChange
                 />
+                <DropdownInput label="Role" error="" options={[]} name="role" onChange />
                 <Input
                     name="password"
                     label="Password"
@@ -76,7 +95,11 @@ const AddUser = () => {
                     placeholder="Confirm Your Password"
                 />
                 <Credential error="" />
-                <button type="submit" className="btn btn-primary btn-lg">
+
+                <button
+                    type="submit"
+                    className="btn btn-outline-dark btn-info font-monospace btn-lg"
+                >
                     Add
                 </button>
             </Form>

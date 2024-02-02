@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WeatherCard from '../components/WeatherCard';
+import WeatherCard from '../components/cards/WeatherCard';
 import PageTitle from '../components/PageTitle';
 const WeatherPage = () => {
     const [weather, setWeather] = useState(null);

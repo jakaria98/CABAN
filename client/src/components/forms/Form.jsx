@@ -2,13 +2,13 @@ const Form = (props) => {
     return (
         <section className="vh-100 ">
             <div className="container h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+                <div className="row d-flex justify-content-center  align-items-center h-100">
                     <div className="col col-lg-7 ">
-                        <div className="card mb-5">
+                        <div className="card mb-5 bg-light">
                             <div className="row ">
                                 <div className=" d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-black">
-                                        <form>{props.children}</form>
+                                        <form> {props.children}</form>
                                     </div>
                                 </div>
                             </div>

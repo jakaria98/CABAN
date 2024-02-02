@@ -4,7 +4,7 @@ import AddUser from './AddUser';
 const Dashboard = () => {
     return (
         <>
-            <Logout />
+            {/* <Logout /> */}
             <AddUser />
         </>
     );

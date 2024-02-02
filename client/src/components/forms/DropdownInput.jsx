@@ -1,11 +1,13 @@
 const DropdownInput = ({ label, name, options, onChange, error }) => {
     return (
         <div className="form-outline mb-4">
-            <label className="form-label">{label}</label>
+            <label className="form-label font-monospace">{label}</label>
             <select
                 name={name}
                 id={name}
-                className={error ? 'form-control is-invalid' : 'form-control'}
+                className={
+                    error ? 'form-control font-monospace is-invalid' : 'form-control font-monospace'
+                }
                 onChange={onChange}
             >
                 <option value="">Select {` ${label}`}</option>
@@ -16,7 +18,7 @@ const DropdownInput = ({ label, name, options, onChange, error }) => {
                 ))}
             </select>
             {error && (
-                <div className="invalid-feedback" role="alert">
+                <div className="invalid-feedback font-monospace" role="alert">
                     {error}
                 </div>
             )}
