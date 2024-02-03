@@ -5,8 +5,19 @@ import Dashboard from './pages/Dashboard.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import WeatherPage from './pages/WeatherPage.jsx';
 import Cargo from './pages/Cargo.jsx';
+import { useEffect } from 'react';
 
 function App() {
+    // const navigate = useNavigate();
+    // const tr = true;
+    // useEffect(() => {
+    //     if (tr) {
+    //         navigate('/dashboard');
+    //     } else {
+    //         navigate('/');
+    //     }
+    // });
+
     return (
         <div>
             <Sidebar />

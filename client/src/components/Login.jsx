@@ -1,5 +1,8 @@
 import myStyle from './LoginStyle';
 import React, { useEffect } from 'react';
+import Input from './forms/Input';
+import Credential from './forms/Credential';
+import Header from './forms/Header';
 
 const Login = ({ user, handleChange, submitHandle }) => {
     let { error } = user;
@@ -25,66 +28,29 @@ const Login = ({ user, handleChange, submitHandle }) => {
                                             <div className="d-flex align-items-center mb-3 pb-1">
                                                 <span className="h1 fw-bold mb-0">Logo</span>
                                             </div>
-                                            <h5
-                                                className="fw-normal font-monospace mb-3 pb-3"
-                                                style={myStyle.signInTextStyle}
-                                            >
-                                                Sign into your account
-                                            </h5>
+                                            <Header text="Sign in to Your Account" />
+                                            <i class="bi bi-envelope-at-fill"></i>
+                                            <Input
+                                                name="email"
+                                                label="Email"
+                                                value={user.email}
+                                                changeHandler={handleChange}
+                                                error={error ? error?.errors?.email : ''}
+                                                type="email"
+                                                placeholder="Enter Your Email"
+                                            />
+                                            <Input
+                                                name="password"
+                                                label="Password"
+                                                value={user.password}
+                                                changeHandler={handleChange}
+                                                error={error ? error?.errors?.password : ''}
+                                                type="password"
+                                                placeholder="Enter Your Password"
+                                            />
 
-                                            <div className="form-outline mb-4">
-                                                <label className="form-label font-monospace">
-                                                    Email
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    className={
-                                                        error?.errors?.email
-                                                            ? 'form-control is-invalid'
-                                                            : 'form-control'
-                                                    }
-                                                    onChange={handleChange}
-                                                    name="email"
-                                                    id="email"
-                                                    value={user.email}
-                                                    placeholder="Enter Your Email"
-                                                />
-                                                {error && error?.errors?.email && (
-                                                    <div className="invalid-feedback" role="alert">
-                                                        {error?.errors?.email?.msg}
-                                                    </div>
-                                                )}
-                                            </div>
+                                            <Credential error={error ? error.message : ''} />
 
-                                            <div className="form-outline mb-4">
-                                                <label className="form-label font-monospace">
-                                                    Password
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    className={
-                                                        error?.errors?.password
-                                                            ? 'form-control is-invalid'
-                                                            : 'form-control'
-                                                    }
-                                                    name="password"
-                                                    id="password"
-                                                    onChange={handleChange}
-                                                    value={user.password}
-                                                    placeholder="Enter Your Password"
-                                                />
-                                                {error && error?.errors?.password && (
-                                                    <div className="invalid-feedback" role="alert">
-                                                        {error?.errors?.password?.msg}
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            {error && error.message == 'Invalid credentials' && (
-                                                <div className="alert alert-danger" role="alert">
-                                                    {error.message}
-                                                </div>
-                                            )}
                                             <div className="pt-1 mb-4">
                                                 <button
                                                     className="btn btn-dark btn-lg font-monospace"

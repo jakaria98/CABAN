@@ -1,5 +1,5 @@
 // external imports
-const { createError } = require('http-errors');
+const createError = require('http-errors');
 const { check, validationResult } = require('express-validator');
 
 const registerValidator = [
@@ -35,7 +35,8 @@ const registerValidator = [
     check('employeeId').isLength({ min: 6 }).withMessage('Employee ID is required').trim(),
     check('department').isLength({ min: 1 }).withMessage('Select a Department').trim(),
     check('employeePost').isLength({ min: 1 }).withMessage('Select a Designation').trim(),
-        
+    check('role').isLength({ min: 1 }).withMessage('Select a Role').trim(),
+
     check('phoneNumber')
         .isLength({ min: 10, max: 10 })
         .withMessage('Phone number is required')

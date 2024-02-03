@@ -31,8 +31,7 @@ const employeeSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'user', 'analyst'],
-        default: 'user',
+        required: true,
     },
     status: {
         type: String,

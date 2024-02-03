@@ -8,7 +8,15 @@ const Form = (props) => {
                             <div className="row ">
                                 <div className=" d-flex align-items-center">
                                     <div className="card-body p-4 p-lg-5 text-black">
-                                        <form> {props.children}</form>
+                                        <form onSubmit={props.submitHandler} >
+                                            {props.children}
+                                            <button
+                                                type="submit"
+                                                className="btn btn-outline-dark btn-info font-monospace btn-lg"
+                                            >
+                                                {props.buttonText}
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

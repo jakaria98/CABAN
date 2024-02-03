@@ -1,22 +1,45 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useReducer, useState } from 'react';
 import Axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
-import Cookies from 'js-cookie';
 
 export const AllUserInfoContext = createContext();
-
-const AllUserInfoProvider = (props) => {
-    const [cookie, setCookie] = useState({});
-    const myCookieValue = Cookies.get('CABAN');
-    console.log(myCookieValue);
-
-    useEffect(() => {
-        const myCookieValue = Cookies.get('CABAN');
-        console.log(myCookieValue);
-        setCookie(myCookieValue);
-    }, []);
-
-    return <AllUserInfoContext.Provider value={{ cookie }}>{props.children}</AllUserInfoContext.Provider>;
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'SET_USERS':
+            return action.payload;
+        case 'ADD_USER':
+            return [...state, action.payload];
+        case 'GET_USER':
+            return state.filter((user) => user._id === action.payload);
+        case 'ACTIVATE_USER':
+            return state.filter((user) => user.status === 'active');
+        case 'DEACTIVATE_USER':
+            return state.filter((user) => user.status === 'inactive');
+        default:
+            return state;
+    }
 };
 
-export default UserInfoProvider;
+const AllUserInfoProvider = (props) => {
+    const [users, dispatch] = useReducer(reducer, []);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await Axios.get('http://localhost:3000/api/user/all');
+            // console.log(response.data.users);
+            dispatch({ type: 'SET_USERS', payload: response.data.users });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+    return (
+        <AllUserInfoContext.Provider value={{ dispatch, users }}>
+            {props.children}
+        </AllUserInfoContext.Provider>
+    );
+};
+
+export default AllUserInfoProvider;

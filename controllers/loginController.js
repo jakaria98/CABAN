@@ -36,46 +36,6 @@ const login = async (req, res, next) => {
     }
 };
 
-//register controller
-const register = async (req, res, next) => {
-    try {
-        const {
-            firstName,
-            password,
-            lastName,
-            email,
-            phoneNumber,
-            employeeId,
-            role,
-            status,
-            department,
-            employeePost,
-        } = req.body;
-        console.log(req.body);
-        //hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({
-            firstName,
-            lastName,
-            email,
-            phoneNumber,
-            employeeId,
-            role,
-            status,
-            department,
-            employeePost,
-            password: hashedPassword,
-        });
-        user = await newUser.save();
-        res.status(201).json({
-            message: 'success',
-            user,
-        });
-    } catch (error) {
-        next(error);
-    }
-};
-
 //create and send token and save in cookie
 const createSendToken = (user, statusCode, res) => {
     const token = signToken(user);
@@ -98,6 +58,60 @@ const signToken = (user) => {
     });
 };
 
+//register controller
+const register = async (req, res, next) => {
+    try {
+        const {
+            firstName,
+            password,
+            lastName,
+            email,
+            phoneNumber,
+            employeeId,
+            role,
+            status,
+            department,
+            employeePost,
+        } = req.body;
+        //check if user exist
+
+        //hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            employeeId,
+            role,
+            status,
+            department,
+            employeePost,
+            password: hashedPassword,
+        });
+        user = await newUser.save();
+        const userObject = {
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            role: user.role,
+            employeeId: user.employeeId,
+            department: user.department,
+            employeePost: user.employeePost,
+            status: user.status,
+        };
+        res.status(201).json({
+            message: 'success',
+            userObject,
+        });
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+};
+
 //logout
 const logout = (req, res, next) => {
     let cookies = Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
@@ -112,8 +126,21 @@ const logout = (req, res, next) => {
     //     message: 'success',
     // });
 };
+
+//get all users
+const getAllUsers = async (req, res, next) => {
+    try {
+        const users = await User.find().select('-password -__v -_id');
+        res.status(200).json({
+            users,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 module.exports = {
     login,
     register,
     logout,
+    getAllUsers,
 };
