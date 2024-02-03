@@ -2,7 +2,7 @@
 const express = require('express');
 
 //internal imports
-const { addEmployeePost } = require('../controllers/employeePostController');
+const { addEmployeePost, getEmployeePosts } = require('../controllers/employeePostController');
 const {
     employeePostValidators,
     handleEmployeePostValidationErrors,
@@ -18,4 +18,8 @@ router.post(
     handleEmployeePostValidationErrors,
     addEmployeePost
 );
+
+//get employee posts
+router.get('/', getEmployeePosts);
+
 module.exports = router;

@@ -7,10 +7,10 @@ const Department = require('../models/Department');
 //get all department
 const getAllDepartment = async (req, res, next) => {
     try {
-        const departments = await Department.find();
+        const departments = await Department.find().select('-__v -_id');
         res.status(200).json({ departments });
     } catch (error) {
-         next(error);
+        next(error);
     }
 };
 
@@ -22,7 +22,7 @@ const addDepartment = async (req, res, next) => {
         await newDepartment.save();
         res.status(200).json({ message: 'Department added successfully' });
     } catch (error) {
-         next(error);
+        next(error);
     }
 };
 module.exports = { getAllDepartment, addDepartment };

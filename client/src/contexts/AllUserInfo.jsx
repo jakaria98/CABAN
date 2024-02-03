@@ -21,7 +21,8 @@ const reducer = (state, action) => {
 
 const AllUserInfoProvider = (props) => {
     const [users, dispatch] = useReducer(reducer, []);
-
+    const [departments, setDepartments] = useState([]);
+    const [roles, setRoles] = useState([]);
     const fetchUsers = async () => {
         try {
             const response = await Axios.get('http://localhost:3000/api/user/all');
@@ -32,13 +33,30 @@ const AllUserInfoProvider = (props) => {
         }
     };
 
+    const fetchDeptAndRole = async () => {
+        try {
+            const dept = await Axios.get('http://localhost:3000/api/department');
+            setDepartments(dept.data.departments);
+            const role = await Axios.get('http://localhost:3000/api/employeePost');
+            setRoles(role.data.employeePosts);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
         fetchUsers();
     }, []);
+    useEffect(() => {
+        fetchDeptAndRole();
+    }, []);
     return (
-        <AllUserInfoContext.Provider value={{ dispatch, users }}>
-            {props.children}
-        </AllUserInfoContext.Provider>
+        console.log(departments),
+        (
+            <AllUserInfoContext.Provider value={{ userDispatch: dispatch }}>
+                {props.children}
+            </AllUserInfoContext.Provider>
+        )
     );
 };
 

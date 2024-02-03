@@ -34,15 +34,14 @@ const addEmployeePost = async (req, res, next) => {
 
 //get all employees
 const getEmployeePosts = async (req, res, next) => {
-    const { department } = req.params;
     try {
-        const employeePosts = await EmployeePost.find({ department });
+        const employeePosts = await EmployeePost.find().select('-__v -_id');
         res.status(200).json({
             employeePosts,
         });
     } catch (error) {
-         next(error);
+        next(error);
     }
 };
 
-module.exports = { addEmployeePost };
+module.exports = { addEmployeePost, getEmployeePosts };

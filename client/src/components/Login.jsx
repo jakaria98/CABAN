@@ -28,8 +28,7 @@ const Login = ({ user, handleChange, submitHandle }) => {
                                             <div className="d-flex align-items-center mb-3 pb-1">
                                                 <span className="h1 fw-bold mb-0">Logo</span>
                                             </div>
-                                            <Header text="Sign in to Your Account" />
-                                            <i class="bi bi-envelope-at-fill"></i>
+                                            <Header text="Sign in to Your Account" />   
                                             <Input
                                                 name="email"
                                                 label="Email"

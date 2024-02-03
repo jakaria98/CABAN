@@ -12,7 +12,7 @@ import Credential from '../components/forms/Credential';
 import { AllUserInfoContext } from '../contexts/AllUserInfo';
 
 const AddUser = () => {
-    const { dispatch} = useContext(AllUserInfoContext);
+    const { userDispatch } = useContext(AllUserInfoContext);
     const [user, setUser] = useState({
         firstName: '',
         lastName: '',
@@ -35,7 +35,7 @@ const AddUser = () => {
         try {
             const newUser = await Axios.post('http://localhost:3000/api/user/register', user);
             console.log(newUser.data.userObject);
-           dispatch({ type: 'ADD_USER', payload: newUser.data.userObject });
+          userDispatch({ type: 'ADD_USER', payload: newUser.data.userObject });
         } catch (err) {
             setError(err.response.data);
         }
