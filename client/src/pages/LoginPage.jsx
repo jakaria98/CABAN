@@ -16,7 +16,7 @@ const LoginPage = () => {
     };
     const submitForm = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:3000/api/user/login', userLoginInfo)
+        Axios.post('http://localhost:3000/api/user/login', userLoginInfo, { withCredentials: true })
             .then((res) => {
                 setToken(res.data.token);
                 navigate('/dashboard');

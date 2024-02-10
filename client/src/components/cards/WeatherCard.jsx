@@ -1,12 +1,10 @@
+import { cardStyle } from './cardStyle.js';
 const WeatherCard = (props) => {
     return (
         <>
             <div className="row">
                 <div className="col">
-                    <div
-                        className="card bg-info-subtle m-3"
-                        style={{ minWidth: '13rem', maxWidth: '16rem' }}
-                    >
+                    <div className="card bg-info-subtle m-3" style={cardStyle}>
                         <div className="card-body">
                             <h5 className="card-title text-center">Card title</h5>
                             <p className="card-text">
