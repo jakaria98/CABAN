@@ -1,5 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+
+import AllUserInfoProvider from './contexts/AllUserInfo.jsx';
+
 import './App.css';
 import Login from './pages/LoginPage.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -9,6 +12,7 @@ import Cargo from './pages/Cargo.jsx';
 import Charter from './pages/Charter.jsx';
 import Reporting from './pages/Reporting.jsx';
 import Vale from './pages/Vale.jsx';
+import Pax from './pages/Pax.jsx';
 
 function App() {
     // const navigate = useNavigate();
@@ -26,14 +30,21 @@ function App() {
             <Sidebar />
             <Routes>
                 <Route path="/" element={<Login />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <AllUserInfoProvider>
+                            <Dashboard />
+                        </AllUserInfoProvider>
+                    }
+                />
                 <Route path="/weather" element={<WeatherPage />} />
                 <Route path="/cargo" element={<Cargo />} />
                 <Route path="/charter" element={<Charter />} />
                 <Route path="/reporting" element={<Reporting />} />
                 <Route path="/vale" element={<Vale />} />
-                {/*  <Route path="/pax" element={} />
-                <Route path="/sked" element={} /> */}
+                <Route path="/pax" element={<Pax />} />
+                {/* <Route path="/sked" element={} /> */}
                 <Route
                     path="*"
                     element={<h1>Not Found The Page. Please try to reach a valid page.</h1>}
