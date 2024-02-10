@@ -58,7 +58,7 @@ const Sidebar = () => {
                         <li className="nav-item btn btn-light">
                             <a
                                 className="nav-link fw-bold font-monospace text-body-secondary"
-                                href="#"
+                                href="/vale"
                             >
                                 VALE
                             </a>

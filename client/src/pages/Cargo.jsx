@@ -5,7 +5,7 @@ const Cargo = () => {
     return (
         <main className="ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Cargo" />
-            <div className="row row-cols-md-4 d-flex align-items-center justify-content-center mt-5 text-center">
+            <div className="row row-cols-md-4 justify-content-between mt-5">
                 <CargoCard name="General" weight="1000" />
                 <CargoCard name="Vale" weight="2000" />
                 <CargoCard name="Express" weight="3000" />

@@ -8,6 +8,7 @@ import WeatherPage from './pages/WeatherPage.jsx';
 import Cargo from './pages/Cargo.jsx';
 import Charter from './pages/Charter.jsx';
 import Reporting from './pages/Reporting.jsx';
+import Vale from './pages/Vale.jsx';
 
 function App() {
     // const navigate = useNavigate();
@@ -30,6 +31,9 @@ function App() {
                 <Route path="/cargo" element={<Cargo />} />
                 <Route path="/charter" element={<Charter />} />
                 <Route path="/reporting" element={<Reporting />} />
+                <Route path="/vale" element={<Vale />} />
+                {/*  <Route path="/pax" element={} />
+                <Route path="/sked" element={} /> */}
                 <Route
                     path="*"
                     element={<h1>Not Found The Page. Please try to reach a valid page.</h1>}
