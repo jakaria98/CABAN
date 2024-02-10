@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar.jsx';
 import WeatherPage from './pages/WeatherPage.jsx';
 import Cargo from './pages/Cargo.jsx';
 import Charter from './pages/Charter.jsx';
+import Reporting from './pages/Reporting.jsx';
 
 function App() {
     // const navigate = useNavigate();
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/weather" element={<WeatherPage />} />
                 <Route path="/cargo" element={<Cargo />} />
                 <Route path="/charter" element={<Charter />} />
+                <Route path="/reporting" element={<Reporting />} />
                 <Route
                     path="*"
                     element={<h1>Not Found The Page. Please try to reach a valid page.</h1>}
