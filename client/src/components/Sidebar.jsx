@@ -18,7 +18,7 @@ const Sidebar = () => {
                         <li className="nav-item btn btn-light">
                             <a
                                 className="nav-link font-monospace fw-bold text-body-secondary"
-                                href="#"
+                                href="/sked"
                             >
                                 SKED
                             </a>

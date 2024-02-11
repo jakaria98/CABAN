@@ -4,7 +4,7 @@ import PAXWeight from '../components/cards/PAXWeight';
 
 const Vale = () => {
     return (
-        <main className="ms-sm-auto col-lg-10 px-md-4">
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Vale (logipal)" />
             <div className="row row-cols-md-4 justify-content-between">
                 <PAXWeight />

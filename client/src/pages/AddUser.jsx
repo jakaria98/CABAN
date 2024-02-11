@@ -33,15 +33,17 @@ const AddUser = () => {
     const submitButton = async (e) => {
         e.preventDefault();
         try {
-            const newUser = await Axios.post('http://localhost:3000/api/user/register', user);
+            const newUser = await Axios.post('http://localhost:3000/api/user/register', user, {
+                withCredentials: true,
+            });
             console.log(newUser.data.userObject);
-          userDispatch({ type: 'ADD_USER', payload: newUser.data.userObject });
+            userDispatch({ type: 'ADD_USER', payload: newUser.data.userObject });
         } catch (err) {
             setError(err.response.data);
         }
     };
     return (
-        <main className="ms-sm-auto col-lg-10 px-md-4">
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Registration" />
             <br />
             <br />

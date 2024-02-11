@@ -3,7 +3,7 @@ import CargoCard from '../components/cards/CargoCard';
 
 const Cargo = () => {
     return (
-        <main className="ms-sm-auto col-lg-10 px-md-4">
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Cargo" />
             <div className="row row-cols-md-4 justify-content-between mt-5">
                 <CargoCard name="General" weight="1000" />

@@ -29,7 +29,7 @@ const WeatherPage = () => {
     // if (!weather) return null;
 
     return (
-        <main className="ms-sm-auto col-lg-10 px-md-4">
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Weather" />
             <div className="row row-cols-1 row-cols-md-3 d-flex justify-content-between mt-5">
                 <WeatherCard />

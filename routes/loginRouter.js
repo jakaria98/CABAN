@@ -18,6 +18,8 @@ router.post('/login', loginValidator, loginValidationHandler, login);
 //register routes
 router.post(
     '/register',
+    checkLogin,
+    checkRole('admin'),
     registerValidator,
     registerValidationHandler,
     register

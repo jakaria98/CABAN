@@ -2,13 +2,13 @@ const jwt = require('jsonwebtoken');
 const createError = require('http-errors');
 
 // auth guard to protect routes that need authentication
-const checkLogin = (req, res, next) => {
+const checkLogin = async (req, res, next) => {
     try {
         // check if token exists
         let cookies = Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
         if (cookies) {
-            token = cookies[process.env.COOKIE_NAME];
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            let token = cookies[process.env.COOKIE_NAME];
+            const decoded = await jwt.verify(token, process.env.JWT_SECRET);
             req.user = decoded;
             res.locals.loggedInUser = decoded;
             next();

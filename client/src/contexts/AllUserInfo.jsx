@@ -51,12 +51,9 @@ const AllUserInfoProvider = (props) => {
         fetchDeptAndRole();
     }, []);
     return (
-        console.log(departments),
-        (
-            <AllUserInfoContext.Provider value={{ userDispatch: dispatch }}>
-                {props.children}
-            </AllUserInfoContext.Provider>
-        )
+        <AllUserInfoContext.Provider value={{ userDispatch: dispatch }}>
+            {props.children}
+        </AllUserInfoContext.Provider>
     );
 };
 

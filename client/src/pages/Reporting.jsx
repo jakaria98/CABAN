@@ -3,7 +3,7 @@ import CommonCard from '../components/cards/CommonCard';
 
 const Reporting = () => {
     return (
-        <main className="ms-sm-auto col-lg-10 px-md-4">
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Reporting" />
             <div className="row row-cols-md-3 d-flex align-items-center justify-content-center mt-5 text-center">
                 <CommonCard text="Chart fuel Optimization" />

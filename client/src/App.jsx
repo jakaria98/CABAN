@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import AllUserInfoProvider from './contexts/AllUserInfo.jsx';
 
@@ -13,8 +14,13 @@ import Charter from './pages/Charter.jsx';
 import Reporting from './pages/Reporting.jsx';
 import Vale from './pages/Vale.jsx';
 import Pax from './pages/Pax.jsx';
+import Sked from './pages/Sked.jsx';
 
 function App() {
+    useEffect(() => {
+        //Read a cookie
+        console.log(Cookies.get('CABAN'));
+    }, []);
     // const navigate = useNavigate();
     // const tr = true;
     // useEffect(() => {
@@ -44,7 +50,7 @@ function App() {
                 <Route path="/reporting" element={<Reporting />} />
                 <Route path="/vale" element={<Vale />} />
                 <Route path="/pax" element={<Pax />} />
-                {/* <Route path="/sked" element={} /> */}
+                <Route path="/sked" element={<Sked />} />
                 <Route
                     path="*"
                     element={<h1>Not Found The Page. Please try to reach a valid page.</h1>}

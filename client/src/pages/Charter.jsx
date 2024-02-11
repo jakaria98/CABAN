@@ -4,7 +4,7 @@ import PAXWeight from '../components/cards/PAXWeight';
 
 const Charter = () => {
     return (
-        <main className="ms-sm-auto col-lg-10 px-md-4">
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Charter (PCS)" />
             <div className="row row-cols-md-4 d-flex justify-content-between mt-5">
                 <PAXWeight />

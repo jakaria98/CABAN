@@ -41,11 +41,12 @@ const createSendToken = (user, statusCode, res) => {
     const token = signToken(user);
 
     //set cookie in httpOnly cookie
-    res.cookie(process.env.COOKIE_NAME, `Bearer ${token}`, {
-        httpOnly: true,
+    res.cookie(process.env.COOKIE_NAME, token, {
+        httpOnly: false,
         maxAge: parseInt(process.env.JWT_EXPIRES_IN),
         signed: true,
     });
+
     res.status(statusCode).json({
         token: `Bearer ${token}`,
     });

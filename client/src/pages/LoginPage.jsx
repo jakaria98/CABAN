@@ -19,6 +19,7 @@ const LoginPage = () => {
         Axios.post('http://localhost:3000/api/user/login', userLoginInfo, { withCredentials: true })
             .then((res) => {
                 setToken(res.data.token);
+                localStorage.setItem('user_token', res.data.token);
                 navigate('/dashboard');
             })
             .catch((err) => {
