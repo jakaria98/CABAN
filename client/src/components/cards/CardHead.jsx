@@ -2,7 +2,7 @@ import { cardStyle } from './cardStyle';
 
 const CardHead = (props) => {
     return (
-        <div className="row mt-5" style={{ paddingLeft: '3px', paddingRight: '3px' }}>
+        <div className="row mt-5">
             <div className="col">
                 <div
                     className="card m-3"

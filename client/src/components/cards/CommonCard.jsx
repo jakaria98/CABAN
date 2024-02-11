@@ -3,7 +3,7 @@ import { cardStyle } from './cardStyle';
 
 const CommonCard = (props) => {
     return (
-        <CardHead height="20rem">
+        <CardHead height={props.cardHeight ? props.cardHeight : '20rem'} bgColor="#ee773c">
             <div className="card-body d-flex align-items-center justify-content-center">
                 <p className="card-text">{props.text}: AMOUNT</p>
             </div>

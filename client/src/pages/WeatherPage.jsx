@@ -31,7 +31,7 @@ const WeatherPage = () => {
     return (
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Weather" />
-            <div className="row row-cols-1 row-cols-md-3 d-flex justify-content-between mt-5">
+            <div className="row row-cols-md-3 d-flex align-items-center justify-content-center mt-5">
                 <WeatherCard />
                 <WeatherCard />
                 <WeatherCard />
