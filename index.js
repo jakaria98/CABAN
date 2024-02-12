@@ -8,6 +8,7 @@ const cors = require('cors');
 const loginRoute = require('./routes/loginRouter');
 const departmentRouter = require('./routes/departmentRouter');
 const employeeTypeRouter = require('./routes/employeePostRouter');
+const weatherRoute = require('./routes/weatherRoute');
 
 //error handler import
 const errorHandler = require('./middleware/common/errorHandler');
@@ -33,6 +34,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use('/api/user', loginRoute);
 app.use('/api/department', departmentRouter);
 app.use('/api/employeePost', employeeTypeRouter);
+app.use('/api/weather', weatherRoute);
 
 //error handler
 app.use(errorHandler);

@@ -23,9 +23,9 @@ const Sked = () => {
                     </CardHead>
                 </CardHead>
                 <CardHead height="33rem" bgColor="#f4f4f4" border="none">
-                    <CardHead height="10rem" bgColor="#ee773c">
+                    <CardHead height="10rem" bgColor="#faa400">
                         <div className="card-body d-flex align-items-center justify-content-center">
-                            <p className="card-text">Fuel on board</p>
+                            <p className="card-text" style={{color: "#143fff"}}>Fuel on board</p>
                         </div>
                     </CardHead>
                     <CardHead height="10rem" bgColor="#ee773c">
