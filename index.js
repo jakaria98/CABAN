@@ -9,7 +9,7 @@ const loginRoute = require('./routes/loginRouter');
 const departmentRouter = require('./routes/departmentRouter');
 const employeeTypeRouter = require('./routes/employeePostRouter');
 const weatherRoute = require('./routes/weatherRoute');
-
+const aircraftRouter = require('./routes/aircraftRouter');
 //error handler import
 const errorHandler = require('./middleware/common/errorHandler');
 
@@ -35,6 +35,7 @@ app.use('/api/user', loginRoute);
 app.use('/api/department', departmentRouter);
 app.use('/api/employeePost', employeeTypeRouter);
 app.use('/api/weather', weatherRoute);
+app.use('/api/aircraft', aircraftRouter);
 
 //error handler
 app.use(errorHandler);
