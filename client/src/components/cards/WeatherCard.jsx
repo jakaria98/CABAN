@@ -3,7 +3,7 @@ import { cardStyle } from './cardStyle.js';
 import { weatherListStyle } from './weatherListStyle.js';
 const WeatherCard = (props) => {
     return (
-        <CardHead bgColor="#ee773c">
+        <CardHead>
             <div className="card-body">
                 <h5 className="card-title text-center">Card title</h5>
                 <p className="card-text">

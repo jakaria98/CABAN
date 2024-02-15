@@ -4,7 +4,7 @@ import { weatherListStyle } from './weatherListStyle';
 
 const PAXWeight = (props) => {
     return (
-        <CardHead height={props.cardHeight ? props.cardHeight : '20rem'} bgColor="#ee773c">
+        <CardHead height={props.cardHeight ? props.cardHeight : '20rem'}>
             <div className="card-body d-flex flex-column align-items-center justify-content-center">
                 <p className="card-text fw-bold">PAX Weight</p>
                 <ul className="list-group list-group-flush " style={{ border: 'none' }}>

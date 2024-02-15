@@ -9,6 +9,14 @@ const departmentSchema = new Schema({
         required: true,
         trim: true,
     },
+    postings: [
+        {
+            name: {
+                type: String,
+                trim: true
+            },
+        }
+    ]
 });
 
 //model

@@ -6,7 +6,12 @@ const CardHead = (props) => {
             <div className="col">
                 <div
                     className="card m-3"
-                    style={{ ...cardStyle, height: props.height, backgroundColor: props.bgColor , border: props.border}}
+                    style={{
+                        ...cardStyle,
+                        height: props.height,
+                        backgroundColor: props.bgColor || '#faa400',
+                        border: props.border,
+                    }}
                 >
                     {props.children}
                 </div>

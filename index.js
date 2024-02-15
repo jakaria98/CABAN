@@ -4,18 +4,19 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+
 // route imports
 const loginRoute = require('./routes/loginRouter');
 const departmentRouter = require('./routes/departmentRouter');
-const employeeTypeRouter = require('./routes/employeePostRouter');
 const weatherRoute = require('./routes/weatherRoute');
 const aircraftRouter = require('./routes/aircraftRouter');
+
 //error handler import
 const errorHandler = require('./middleware/common/errorHandler');
 
+//app initialization
 const app = express();
 dotenv.config();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -33,7 +34,6 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 //routes
 app.use('/api/user', loginRoute);
 app.use('/api/department', departmentRouter);
-app.use('/api/employeePost', employeeTypeRouter);
 app.use('/api/weather', weatherRoute);
 app.use('/api/aircraft', aircraftRouter);
 

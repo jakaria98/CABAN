@@ -3,4 +3,5 @@ export const cardStyle = {
     maxWidth: '14rem',
     minHeight: '10rem',
     borderRadius: '35px',
+    color: '#154289',
 };

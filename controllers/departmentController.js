@@ -1,28 +1,60 @@
-//external imports
 const createError = require('http-errors');
-
-//internal imports
 const Department = require('../models/Department');
 
-//get all department
-const getAllDepartment = async (req, res, next) => {
+// Controller for getting all departments
+const getAllDepartment = async (req, res) => {
     try {
-        const departments = await Department.find().select('-__v -_id');
-        res.status(200).json({ departments });
-    } catch (error) {
-        next(error);
+        // Get all departments from the database
+        const departments = await Department.find();
+
+        res.status(200).json(departments);
+    } catch {
+        createError(500, 'Internal Server Error');
     }
 };
 
-//add department
-const addDepartment = async (req, res, next) => {
-    const { name } = req.body;
+// Controller for adding a new department
+const addDepartment = async (req, res) => {
     try {
-        newDepartment = new Department({ name });
-        await newDepartment.save();
-        res.status(200).json({ message: 'Department added successfully' });
+        const { name, postings } = req.body;
+
+        // Create a new department instance
+        const newDepartment = new Department({
+            name,
+            postings: postings || [], // Assuming postings is an array, initialize with an empty array if not provided
+        });
+
+        // Save the new department to the database
+        const savedDepartment = await newDepartment.save();
+
+        res.status(201).json(savedDepartment);
     } catch (error) {
-        next(error);
+        createError(500, 'Internal Server Error');
     }
 };
-module.exports = { getAllDepartment, addDepartment };
+
+// Controller for updating a department by ID
+const updateDepartment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, postings } = req.body;
+
+        // Find and update the department by ID
+        const updatedDepartment = await Department.findByIdAndUpdate(
+            id,
+            { name, postings },
+            { new: true } // Return the updated document
+        );
+
+        // Check if the department with the given ID exists
+        if (!updatedDepartment) {
+            createError(404, 'Department not found');
+        }
+
+        res.status(200).json(updatedDepartment);
+    } catch {
+        createError(500, 'Internal Server Error');
+    }
+};
+
+module.exports = { addDepartment, updateDepartment , getAllDepartment};

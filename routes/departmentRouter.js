@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 //internal imports
-const { getAllDepartment, addDepartment } = require('../controllers/departmentController');
+const { getAllDepartment, addDepartment, updateDepartment } = require('../controllers/departmentController');
 const {
     departmentValidator,
     departmentValidationHandler,
@@ -15,5 +15,8 @@ router.get('/', getAllDepartment); //checkLogin, checkRole('admin'),
 
 //add department
 router.post('/', departmentValidator, departmentValidationHandler, addDepartment);
+
+//update department
+router.put('/:id', departmentValidator, departmentValidationHandler, updateDepartment);
 
 module.exports = router;
