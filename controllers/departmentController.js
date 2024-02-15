@@ -6,7 +6,6 @@ const getAllDepartment = async (req, res) => {
     try {
         // Get all departments from the database
         const departments = await Department.find();
-
         res.status(200).json(departments);
     } catch {
         createError(500, 'Internal Server Error');
@@ -37,19 +36,24 @@ const addDepartment = async (req, res) => {
 const updateDepartment = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, postings } = req.body;
+        const { name, postings: newPostings } = req.body;
 
-        // Find and update the department by ID
-        const updatedDepartment = await Department.findByIdAndUpdate(
-            id,
-            { name, postings },
-            { new: true } // Return the updated document
-        );
+        // Find the existing department by ID
+        const existingDepartment = await Department.findById(id);
 
         // Check if the department with the given ID exists
-        if (!updatedDepartment) {
+        if (!existingDepartment) {
             createError(404, 'Department not found');
         }
+
+        // Add new postings to the existing postings
+        existingDepartment.postings = [...existingDepartment.postings, ...newPostings];
+
+        // Update other properties
+        existingDepartment.name = name || existingDepartment.name;
+
+        // Save the updated department to the database
+        const updatedDepartment = await existingDepartment.save();
 
         res.status(200).json(updatedDepartment);
     } catch {
@@ -57,4 +61,4 @@ const updateDepartment = async (req, res) => {
     }
 };
 
-module.exports = { addDepartment, updateDepartment , getAllDepartment};
+module.exports = { addDepartment, updateDepartment, getAllDepartment };

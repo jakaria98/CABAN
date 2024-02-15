@@ -25,7 +25,7 @@ const AllUserInfoProvider = (props) => {
     const fetchUsers = async () => {
         try {
             const response = await Axios.get('http://localhost:3000/api/user/all');
-            // console.log(response.data.users);
+            //console.log(response.data.users);
             dispatch({ type: 'SET_USERS', payload: response.data.users });
         } catch (error) {
             console.log(error);
@@ -35,9 +35,8 @@ const AllUserInfoProvider = (props) => {
     useEffect(() => {
         fetchUsers();
     }, []);
-
     return (
-        <AllUserInfoContext.Provider value={{ userDispatch: dispatch }}>
+        <AllUserInfoContext.Provider value={{ users, userDispatch: dispatch }}>
             {props.children}
         </AllUserInfoContext.Provider>
     );

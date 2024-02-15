@@ -11,12 +11,10 @@ const departmentSchema = new Schema({
     },
     postings: [
         {
-            name: {
-                type: String,
-                trim: true
-            },
-        }
-    ]
+            type: String,
+            trim: true,
+        },
+    ],
 });
 
 //model

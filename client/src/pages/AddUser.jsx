@@ -9,10 +9,15 @@ import Input from '../components/forms/Input';
 import DropdownInput from '../components/forms/DropdownInput';
 import PageTitle from '../components/PageTitle';
 import Credential from '../components/forms/Credential';
+
+//context
 import { AllUserInfoContext } from '../contexts/AllUserInfo';
+import { DepartmentContext } from '../contexts/DepartmentContext';
 
 const AddUser = () => {
     const { userDispatch } = useContext(AllUserInfoContext);
+    const { departments } = useContext(DepartmentContext);
+
     const [user, setUser] = useState({
         firstName: '',
         lastName: '',
@@ -25,23 +30,36 @@ const AddUser = () => {
         password: '',
         confirmPassword: '',
     });
-    const [error, setError] = useState({});
 
+    const [error, setError] = useState({});
+    const [dept, setDept] = useState([]);
+    useEffect(() => {
+        setDept(departments);
+    }, [departments]);
+
+    //handle change
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
+
+    //submit button
     const submitButton = async (e) => {
         e.preventDefault();
         try {
             const newUser = await Axios.post('http://localhost:3000/api/user/register', user, {
                 withCredentials: true,
             });
-            console.log(newUser.data.userObject);
             userDispatch({ type: 'ADD_USER', payload: newUser.data.userObject });
         } catch (err) {
             setError(err.response.data);
         }
     };
+    let deptOptions = dept.map((dept) => dept.name);
+    let postOptions =
+        user.department.length > 0
+            ? dept.filter((d) => d.name === user.department)[0].postings
+            : [];
+
     return (
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Registration" />
@@ -98,14 +116,14 @@ const AddUser = () => {
                 <DropdownInput
                     label="Department"
                     error={error ? error?.errors?.department : ''}
-                    options={['HR', 'IT', 'Finance', 'Admin', 'Marketing', 'Sales', 'Production']}
+                    options={deptOptions}
                     name="department"
                     changeHandler={handleChange}
                 />
                 <DropdownInput
                     label="Designation"
                     error={error ? error?.errors?.employeePost : ''}
-                    options={['Manager', 'Supervisor', 'Executive', 'Trainee']}
+                    options={postOptions}
                     name="employeePost"
                     changeHandler={handleChange}
                 />

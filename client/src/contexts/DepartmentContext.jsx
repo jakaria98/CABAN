@@ -14,9 +14,9 @@ const reducer = (state, action) => {
             });
         case 'ADD_DEPARTMENT':
             return [...state, action.payload];
-        case 'GET_DEPARTMENTS':
+        case 'GET_DEPARTMENT':
             return state.filter((dept) => dept._id === action.payload);
-        case 'GET_DEPARTMENTS':
+        case 'SET_DEPARTMENTS':
             return action.payload;
         default:
             return state;
@@ -24,10 +24,12 @@ const reducer = (state, action) => {
 };
 const DepartmentProvider = (props) => {
     const [departments, dispatch] = useReducer(reducer, []);
+
     const fetchDept = async () => {
         try {
             const response = await Axios.get('http://localhost:3000/api/department');
-            dispatch({ type: 'GET_DEPARTMENTS', payload: response.data.departments });
+            //console.log(response.data);
+            dispatch({ type: 'SET_DEPARTMENTS', payload: response.data });
         } catch (error) {
             console.log(error);
         }
@@ -37,7 +39,7 @@ const DepartmentProvider = (props) => {
     }, []);
 
     return (
-        <DepartmentContext.Provider value={{ departmentDispatch: dispatch }}>
+        <DepartmentContext.Provider value={{ departments, departmentDispatch: dispatch }}>
             {props.children}
         </DepartmentContext.Provider>
     );

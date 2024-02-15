@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import AllUserInfoProvider from './contexts/AllUserInfo.jsx';
+import DepartmentProvider from './contexts/DepartmentContext.jsx';
 
 import './App.css';
 import Login from './pages/LoginPage.jsx';
@@ -17,10 +18,10 @@ import Pax from './pages/Pax.jsx';
 import Sked from './pages/Sked.jsx';
 
 function App() {
-    useEffect(() => {
-        //Read a cookie
-        console.log(Cookies.get('CABAN'));
-    }, []);
+    // useEffect(() => {
+    //     //Read a cookie
+    //     console.log(Cookies.get('CABAN'));
+    // }, []);
     // const navigate = useNavigate();
     // const tr = true;
     // useEffect(() => {
@@ -39,9 +40,11 @@ function App() {
                 <Route
                     path="/dashboard"
                     element={
-                        <AllUserInfoProvider>
-                            <Dashboard />
-                        </AllUserInfoProvider>
+                        <DepartmentProvider>
+                            <AllUserInfoProvider>
+                                <Dashboard />
+                            </AllUserInfoProvider>
+                        </DepartmentProvider>
                     }
                 />
                 <Route path="/weather" element={<WeatherPage />} />
