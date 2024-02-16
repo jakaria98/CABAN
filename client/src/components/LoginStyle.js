@@ -1,11 +1,12 @@
 const myStyle = {
     sectionStyle: {
         backgroundColor: '#df7225',
+        backgroundImage: "url('./loginBackground.jpg')",
     },
     cardStyle: {
         borderRadius: '1rem',
     },
-    imagesStyle: {
+    imageStyle: {
         borderRadius: '1rem 0 0 1rem',
     },
     signInTextStyle: {
