@@ -6,7 +6,7 @@ const Charter = () => {
     return (
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Charter (PCS)" />
-            <div className="row row-cols-md-4 d-flex align-items-center justify-content-center mt-5">
+            <div className="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3 d-flex align-items-center justify-content-center">
                 <PAXWeight />
                 <CommonCard text="Cargo Allocated to flight Pieces and Weight" />
                 <CommonCard text="Fuel on board" />

@@ -7,7 +7,7 @@ const Sked = () => {
     return (
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <PageTitle title="Sked W&B" />
-            <div className="row row-cols-md-4 d-flex align-items-center justify-content-center">
+            <div className="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3 d-flex align-items-center justify-content-center">
                 <PAXWeight cardHeight="25rem" />
 
                 <CardHead height="33rem" bgColor="#f4f4f4" border="none">
