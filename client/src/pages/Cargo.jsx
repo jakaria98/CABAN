@@ -1,5 +1,5 @@
 import PageTitle from '../components/PageTitle';
-import CargoCard from '../components/cards/CargoCard';
+import CargoCard from '../components/cards/flightInfoCards/CargoCard';
 
 const Cargo = () => {
     return (

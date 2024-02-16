@@ -1,7 +1,7 @@
 import PageTitle from '../components/PageTitle';
-import CardHead from '../components/cards/CardHead';
-import CommonCard from '../components/cards/CommonCard';
-import PAXWeight from '../components/cards/PAXWeight';
+import CardHead from '../components/cards/flightInfoCards/CardHead';
+import CommonCard from '../components/cards/flightInfoCards/CommonCard';
+import PAXWeight from '../components/cards/flightInfoCards/PAXWeight';
 
 const Sked = () => {
     return (

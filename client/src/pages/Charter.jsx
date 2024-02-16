@@ -1,6 +1,6 @@
 import PageTitle from '../components/PageTitle';
-import CommonCard from '../components/cards/CommonCard';
-import PAXWeight from '../components/cards/PAXWeight';
+import CommonCard from '../components/cards/flightInfoCards/CommonCard';
+import PAXWeight from '../components/cards/flightInfoCards/PAXWeight';
 
 const Charter = () => {
     return (

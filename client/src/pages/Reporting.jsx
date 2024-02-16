@@ -1,5 +1,5 @@
 import PageTitle from '../components/PageTitle';
-import CommonCard from '../components/cards/CommonCard';
+import CommonCard from '../components/cards/flightInfoCards/CommonCard';
 
 const Reporting = () => {
     return (
