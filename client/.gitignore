@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+.eslintrc.cjs
+.pnp.cjs.pnp.loader.mjs
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
