@@ -11,7 +11,11 @@ const aircraftSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    aircraftConfiguration: {
+    maxSeats: {
+        type: Number,
+        required: true,
+    },
+    maxFuel: {
         type: Number,
         required: true,
     },

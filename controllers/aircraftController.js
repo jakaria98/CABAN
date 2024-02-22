@@ -11,12 +11,12 @@ const addAircraft = async (req, res, next) => {
     }
 };
 
-const getAircrafts = async (req, res, next) => {
+const getAircraft = async (req, res, next) => {
     try {
-        const aircrafts = await Aircraft.find();
-        res.status(200).json(aircrafts);
+        const aircraft = await Aircraft.find();
+        res.status(200).json(aircraft);
     } catch (error) {
-        createError(400, 'Aircrafts not found');
+        createError(400, 'Aircraft not found');
     }
 };
 

@@ -1,9 +1,10 @@
-const {check, validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 const aircraftValidator = [
     check('aircraftType').not().isEmpty().withMessage('Aircraft type is required'),
     check('aircraftRegistration').not().isEmpty().withMessage('Aircraft registration is required'),
-    check('aircraftConfiguration').not().isEmpty().withMessage('Aircraft configuration is required'),
+    check('maxSeats').not().isEmpty().withMessage('Seat capacity is required'),
+    check('maxFuel').not().isEmpty().withMessage('Fuel capacity is required'),
     check('aircraftMaxPayload').not().isEmpty().withMessage('Aircraft max payload is required'),
 ];
 
@@ -16,6 +17,6 @@ const aircraftValidationHandler = (req, res, next) => {
         });
     }
     next();
-}
+};
 
-module.exports = {aircraftValidator, aircraftValidationHandler};
+module.exports = { aircraftValidator, aircraftValidationHandler };
