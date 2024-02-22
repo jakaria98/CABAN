@@ -32,4 +32,4 @@ const updateAircraft = async (req, res, next) => {
     }
 };
 
-module.exports = { addAircraft, getAircrafts, updateAircraft };
+module.exports = { addAircraft, getAircraft, updateAircraft };
