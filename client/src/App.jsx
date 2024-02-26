@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import AllUserInfoProvider from './contexts/AllUserInfo.jsx';
@@ -20,23 +20,34 @@ import useAuth from './utils/useAuth.jsx';
 
 function App() {
     const [auth, setAuth] = useState(null);
+    const navigate = useNavigate();
+
+    // there is a bug in the code, the auth state is not working properly and app is re-rendering infinitely
     useEffect(() => {
         const checkAuth = async () => {
             const isAuthenticated = await useAuth();
+            console.log('App isAuthenticated:', isAuthenticated); // (1)
             setAuth(isAuthenticated);
         };
 
         checkAuth();
-    }, []);
+    }, []); // Run only once when the component mounts
+
+    useEffect(() => {
+        // Redirect based on auth status
+        if (auth === false) {
+            navigate('/');
+        }
+    }, [auth, navigate]);
 
     return (
         <div>
-            {auth ? <Sidebar /> : null}
+            {auth && <Sidebar />}
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/*" element={<ProtectedRouter />}>
+                <Route path="/" element={<Login />} />
+                 <Route path="/*" element={<ProtectedRouter />}>
                     <Route
-                        path=""
+                        path="dashboard"
                         element={
                             <DepartmentProvider>
                                 <AllUserInfoProvider>

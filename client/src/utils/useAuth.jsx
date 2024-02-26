@@ -5,7 +5,8 @@ const useAuth = async () => {
         const user = await axios.get('http://localhost:3000/api/user/me', {
             withCredentials: true,
         });
-        return Object.keys(user).length > 0;
+        console.log(Object.keys(user.data).length);
+        return Object.keys(user.data).length > 0;
     } catch (error) {
         console.log(error);
         return false; // Handle errors, for example, by treating the userme as not authenticated
