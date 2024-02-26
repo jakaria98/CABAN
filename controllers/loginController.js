@@ -139,9 +139,16 @@ const getAllUsers = async (req, res, next) => {
         next(error);
     }
 };
+
+const getMe = (req, res, next) => {
+    res.status(200).json({
+        user: req.user,
+    });
+};
 module.exports = {
     login,
     register,
     logout,
     getAllUsers,
+    getMe,
 };

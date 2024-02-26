@@ -5,16 +5,6 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@airport-discovery/metars-tafs@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@airport-discovery/metars-tafs@npm:1.0.3"
-  dependencies:
-    axios: "npm:^0.21.0"
-    xml2json: "npm:^0.12.0"
-  checksum: 55605138e0138979df29cf6917590def12040d16d4506d0103e0f1fb340addb274a84af2949a8e0bbcb5736df3988fe829f2932b4053918847ded4275bee0221
-  languageName: node
-  linkType: hard
-
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -106,8 +96,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "CABAN@workspace:."
   dependencies:
-    "@airport-discovery/metars-tafs": "npm:^1.0.3"
-    aviationweather: "npm:^3.0.4"
     axios: "npm:^1.6.7"
     bcrypt: "npm:^5.1.1"
     cookie-parser: "npm:^1.4.6"
@@ -117,7 +105,6 @@ __metadata:
     express-validator: "npm:^7.0.1"
     http-errors: "npm:^2.0.0"
     jsonwebtoken: "npm:^9.0.2"
-    metar-taf-parser: "npm:^8.0.5"
     mongoose: "npm:^8.1.1"
     nodemon: "npm:^3.0.3"
   languageName: unknown
@@ -246,26 +233,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aviationweather@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "aviationweather@npm:3.0.4"
-  dependencies:
-    axios: "npm:^1.6.0"
-    tslib: "npm:^2.6.2"
-  checksum: f20285478867c0d1df6f656ace503d72636db64dfbb19843f776f2e9bd4eb36dcaee5057b9d8645170c74b90acf88f0f7556de1a3e91855bc5cbe7ce352bcd99
-  languageName: node
-  linkType: hard
-
-"axios@npm:^0.21.0":
-  version: 0.21.4
-  resolution: "axios@npm:0.21.4"
-  dependencies:
-    follow-redirects: "npm:^1.14.0"
-  checksum: fbcff55ec68f71f02d3773d467db2fcecdf04e749826c82c2427a232f9eba63242150a05f15af9ef15818352b814257541155de0281f8fb2b7e8a5b79f7f2142
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.6.0, axios@npm:^1.6.7":
+"axios@npm:^1.6.7":
   version: 1.6.7
   resolution: "axios@npm:1.6.7"
   dependencies:
@@ -297,15 +265,6 @@ __metadata:
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: d73d8b897238a2d3ffa5f59c0241870043aa7471335e89ea5e1ff48edb7c2d0bb471517a3e4c5c3f4c043615caa2717b5f80a5e61e07503d51dc85cb848e665d
-  languageName: node
-  linkType: hard
-
-"bindings@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "bindings@npm:1.5.0"
-  dependencies:
-    file-uri-to-path: "npm:1.0.0"
-  checksum: 3dab2491b4bb24124252a91e656803eac24292473e56554e35bbfe3cc1875332cfa77600c3bac7564049dc95075bf6fcc63a4609920ff2d64d0fe405fcf0d4ba
   languageName: node
   linkType: hard
 
@@ -769,13 +728,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-uri-to-path@npm:1.0.0":
-  version: 1.0.0
-  resolution: "file-uri-to-path@npm:1.0.0"
-  checksum: 3b545e3a341d322d368e880e1c204ef55f1d45cdea65f7efc6c6ce9e0c4d22d802d5629320eb779d006fe59624ac17b0e848d83cc5af7cd101f206cb704f5519
-  languageName: node
-  linkType: hard
-
 "fill-range@npm:^7.0.1":
   version: 7.0.1
   resolution: "fill-range@npm:7.0.1"
@@ -800,7 +752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.15.4":
+"follow-redirects@npm:^1.15.4":
   version: 1.15.5
   resolution: "follow-redirects@npm:1.15.5"
   peerDependenciesMeta:
@@ -1025,27 +977,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoek@npm:5.x.x":
-  version: 5.0.4
-  resolution: "hoek@npm:5.0.4"
-  checksum: bd40840f6f56fc749bbe833f2715380bedb0d6141668e4bd226e9a5f388d0bfbcc87aeb0e992cc8163a8c2319bffbe7c7a22e2245657e57ab63d8b6d3591455c
-  languageName: node
-  linkType: hard
-
-"hoek@npm:6.x.x":
-  version: 6.1.3
-  resolution: "hoek@npm:6.1.3"
-  checksum: cb6d477afcdde3a99ce3c3ae96af17ed63362c595aa115553e974a08bc2563cffbf44f58f56b8510affbccddf90e1bf1ee4202dc34a80ab879e12b29b425cc60
-  languageName: node
-  linkType: hard
-
-"hoek@npm:^4.2.1":
-  version: 4.3.1
-  resolution: "hoek@npm:4.3.1"
-  checksum: f4ed80a140940dde9b9943af63368ad65221858246337d4280a166777142c95bfd12f613c70890c6a7d4df6f6c97ade148b5e747942577111401a68b3c8aa212
-  languageName: node
-  linkType: hard
-
 "http-cache-semantics@npm:^4.1.1":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -1212,15 +1143,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isemail@npm:3.x.x":
-  version: 3.2.0
-  resolution: "isemail@npm:3.2.0"
-  dependencies:
-    punycode: "npm:2.x.x"
-  checksum: de836d3231337175bc46cf882c59d2ef090381df1e265c6a3afdbb3d510ea169fb22ebea937429f73a41b24e39decf17d8d6d23463bda2f428b066c8fb13f14d
-  languageName: node
-  linkType: hard
-
 "isexe@npm:^2.0.0":
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
@@ -1245,17 +1167,6 @@ __metadata:
     "@pkgjs/parseargs":
       optional: true
   checksum: f01d8f972d894cd7638bc338e9ef5ddb86f7b208ce177a36d718eac96ec86638a6efa17d0221b10073e64b45edc2ce15340db9380b1f5d5c5d000cbc517dc111
-  languageName: node
-  linkType: hard
-
-"joi@npm:^13.1.2":
-  version: 13.7.0
-  resolution: "joi@npm:13.7.0"
-  dependencies:
-    hoek: "npm:5.x.x"
-    isemail: "npm:3.x.x"
-    topo: "npm:3.x.x"
-  checksum: d7c1e83d6a2beb5bc87db2777f5d636325890fef201aa4aa55d83c4e22e97af6bca32c016526207baf380f693c4b91fa6043cb595ecdf0ae6d737c1039f26da3
   languageName: node
   linkType: hard
 
@@ -1423,13 +1334,6 @@ __metadata:
   version: 1.0.1
   resolution: "merge-descriptors@npm:1.0.1"
   checksum: b67d07bd44cfc45cebdec349bb6e1f7b077ee2fd5beb15d1f7af073849208cb6f144fe403e29a36571baf3f4e86469ac39acf13c318381e958e186b2766f54ec
-  languageName: node
-  linkType: hard
-
-"metar-taf-parser@npm:^8.0.5":
-  version: 8.0.5
-  resolution: "metar-taf-parser@npm:8.0.5"
-  checksum: 97c47d4fc63ea4d91087c003b17cccfe90e5289e14454a5e91a7fd554c65c3d4608be45872a8f595f5a4036095154a9280af44512beeb11473f34efc15518346
   languageName: node
   linkType: hard
 
@@ -1672,15 +1576,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.13.2":
-  version: 2.18.0
-  resolution: "nan@npm:2.18.0"
-  dependencies:
-    node-gyp: "npm:latest"
-  checksum: 9209d80134fdb98c0afe35c1372d2b930a0a8d3c52706cb5e4257a27e9845c375f7a8daedadadec8d6403ca2eebb3b37d362ff5d1ec03249462abf65fef2a148
-  languageName: node
-  linkType: hard
-
 "negotiator@npm:0.6.3, negotiator@npm:^0.6.3":
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
@@ -1694,17 +1589,6 @@ __metadata:
   dependencies:
     node-gyp: "npm:latest"
   checksum: 0eb269786124ba6fad9df8007a149e03c199b3e5a3038125dfb3e747c2d5113d406a4e33f4de1ea600aa2339be1f137d55eba1a73ee34e5fff06c52a5c296d1d
-  languageName: node
-  linkType: hard
-
-"node-expat@npm:^2.3.18":
-  version: 2.4.0
-  resolution: "node-expat@npm:2.4.0"
-  dependencies:
-    bindings: "npm:^1.5.0"
-    nan: "npm:^2.13.2"
-    node-gyp: "npm:latest"
-  checksum: 62a2a0708151d34ce366e99c2d6f9011867f1e8a18920ae450e79f55553908dc073b22cae0b7be010f9cf3a4bc62c25b9776c19683e0e206d944e214f4a871d8
   languageName: node
   linkType: hard
 
@@ -1941,7 +1825,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:2.x.x, punycode@npm:^2.3.0":
+"punycode@npm:^2.3.0":
   version: 2.3.1
   resolution: "punycode@npm:2.3.1"
   checksum: 14f76a8206bc3464f794fb2e3d3cc665ae416c01893ad7a02b23766eb07159144ee612ad67af5e84fa4479ccfe67678c4feb126b0485651b302babf66f04f9e9
@@ -2306,15 +2190,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"topo@npm:3.x.x":
-  version: 3.0.3
-  resolution: "topo@npm:3.0.3"
-  dependencies:
-    hoek: "npm:6.x.x"
-  checksum: afae9e996e6aa806aef047b4131a3e4b61f0a7f391c95365c554339b7010fa2e001767c1f7e9a4bfd16f174ccbeb2e73a1bff990e3de07a56b87c4c7ee3497df
-  languageName: node
-  linkType: hard
-
 "touch@npm:^3.1.0":
   version: 3.1.0
   resolution: "touch@npm:3.1.0"
@@ -2339,13 +2214,6 @@ __metadata:
   version: 0.0.3
   resolution: "tr46@npm:0.0.3"
   checksum: 047cb209a6b60c742f05c9d3ace8fa510bff609995c129a37ace03476a9b12db4dbf975e74600830ef0796e18882b2381fb5fb1f6b4f96b832c374de3ab91a11
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "tslib@npm:2.6.2"
-  checksum: e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
   languageName: node
   linkType: hard
 
@@ -2510,19 +2378,6 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 56fece1a4018c6a6c8e28fbc88c87e0fbf4ea8fd64fc6c63b18f4acc4bd13e0ad2515189786dd2c30d3eec9663d70f4ecf699330002f8ccb547e4a18231fc9f0
-  languageName: node
-  linkType: hard
-
-"xml2json@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "xml2json@npm:0.12.0"
-  dependencies:
-    hoek: "npm:^4.2.1"
-    joi: "npm:^13.1.2"
-    node-expat: "npm:^2.3.18"
-  bin:
-    xml2json: bin/xml2json
-  checksum: 9269e4cb14ce30ca821a4e628b185c97b720e93dde2d34639d83ce0e59100afbb4b94a8f96f3966a1db270391b448a2a828f731b6d43369e7bf0b1367b285021
   languageName: node
   linkType: hard
 

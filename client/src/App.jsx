@@ -1,6 +1,5 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
 import AllUserInfoProvider from './contexts/AllUserInfo.jsx';
 import DepartmentProvider from './contexts/DepartmentContext.jsx';
@@ -16,48 +15,44 @@ import Reporting from './pages/Reporting.jsx';
 import Vale from './pages/Vale.jsx';
 import Pax from './pages/Pax.jsx';
 import Sked from './pages/Sked.jsx';
+import ProtectedRouter from './utils/ProtectedRouter.jsx';
+import useAuth from './utils/useAuth.jsx';
 
 function App() {
-    // useEffect(() => {
-    //     //Read a cookie
-    //     console.log(Cookies.get('CABAN'));
-    // }, []);
-    // const navigate = useNavigate();
-    // const tr = true;
-    // useEffect(() => {
-    //     if (tr) {
-    //         navigate('/dashboard');
-    //     } else {
-    //         navigate('/');
-    //     }
-    // });
+    const [auth, setAuth] = useState(null);
+    useEffect(() => {
+        const checkAuth = async () => {
+            const isAuthenticated = await useAuth();
+            setAuth(isAuthenticated);
+        };
+
+        checkAuth();
+    }, []);
 
     return (
         <div>
-            <Sidebar />
+            {auth ? <Sidebar /> : null}
             <Routes>
-                <Route path="/" element={<Login />} />
-                <Route
-                    path="/dashboard"
-                    element={
-                        <DepartmentProvider>
-                            <AllUserInfoProvider>
-                                <Dashboard />
-                            </AllUserInfoProvider>
-                        </DepartmentProvider>
-                    }
-                />
-                <Route path="/weather" element={<WeatherPage />} />
-                <Route path="/cargo" element={<Cargo />} />
-                <Route path="/charter" element={<Charter />} />
-                <Route path="/reporting" element={<Reporting />} />
-                <Route path="/vale" element={<Vale />} />
-                <Route path="/pax" element={<Pax />} />
-                <Route path="/sked" element={<Sked />} />
-                <Route
-                    path="*"
-                    element={<h1>Not Found The Page. Please try to reach a valid page.</h1>}
-                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/*" element={<ProtectedRouter />}>
+                    <Route
+                        path=""
+                        element={
+                            <DepartmentProvider>
+                                <AllUserInfoProvider>
+                                    <Dashboard />
+                                </AllUserInfoProvider>
+                            </DepartmentProvider>
+                        }
+                    />
+                    <Route path="weather" element={<WeatherPage />} />
+                    <Route path="cargo" element={<Cargo />} />
+                    <Route path="charter" element={<Charter />} />
+                    <Route path="reporting" element={<Reporting />} />
+                    <Route path="vale" element={<Vale />} />
+                    <Route path="pax" element={<Pax />} />
+                    <Route path="sked" element={<Sked />} />
+                </Route>
             </Routes>
         </div>
     );

@@ -2,7 +2,7 @@
 const express = require('express');
 
 //internal imports
-const { login, register, logout, getAllUsers } = require('../controllers/loginController');
+const { login, register, logout, getAllUsers, getMe } = require('../controllers/loginController');
 const { loginValidator, loginValidationHandler } = require('../middleware/user/loginValidators');
 const {
     registerValidator,
@@ -25,10 +25,13 @@ router.post(
     register
 ); //check for logged in user and role
 
+//get me
+router.get('/me', checkLogin, getMe);
+
 //logout routes
-router.post('/logout', logout);
+router.post('/logout',checkLogin, logout);
 
 //get all users
-router.get('/all', getAllUsers);
+router.get('/all', checkLogin, getAllUsers);
 
 module.exports = router;

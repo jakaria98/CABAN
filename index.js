@@ -34,7 +34,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 //routes
 app.use('/api/user', loginRoute);
 app.use('/api/department', departmentRouter);
-app.use('/api/weather', weatherRoute);
+//app.use('/api/weather', weatherRoute);
 app.use('/api/aircraft', aircraftRouter);
 
 //error handler
