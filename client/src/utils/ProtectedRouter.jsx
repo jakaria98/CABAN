@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import useAuth from './useAuth';
+import { MyInfoContext } from '../contexts/myInfoContext';
 
 const ProtectedRouter = () => {
-    const [auth, setAuth] = useState(false);
-
-    // there is a bug in the code, the auth state is not working properly and app is re-rendering infinitely
-
-    useEffect(() => {
-        const checkAuth = async () => {
-            const isAuthenticated = await useAuth();
-            console.log('ProtectedRouter isAuthenticated:', isAuthenticated); // (1)
-            setAuth(isAuthenticated);
-        };
-
-        checkAuth();
-    }, [auth]);
-
-    return auth ? <Outlet /> : <Navigate to="/" />;
+    const { auth } = useContext(MyInfoContext);
+    return auth ? <Outlet /> : <Navigate to="/unauthorized" />;
 };
 
 export default ProtectedRouter;

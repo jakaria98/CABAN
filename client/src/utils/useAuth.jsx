@@ -1,16 +1,28 @@
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
-const useAuth = async () => {
-    try {
-        const user = await axios.get('http://localhost:3000/api/user/me', {
-            withCredentials: true,
-        });
-        console.log(Object.keys(user.data).length);
-        return Object.keys(user.data).length > 0;
-    } catch (error) {
-        console.log(error);
-        return false; // Handle errors, for example, by treating the userme as not authenticated
-    }
+const useAuth = () => {
+    const [auth, setAuth] = useState(false);
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                let response = await Axios.get('http://localhost:3000/api/user/me', {
+                    withCredentials: true,
+                });
+
+                if (response.data && Object.keys(response.data).length > 0) {
+                    setAuth(true);
+                    setUser(response.data.user);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        checkAuth();
+    }, []);
+
+    return { auth, user };
 };
 
 export default useAuth;

@@ -1,7 +1,9 @@
 const Input = ({ name, label, value, changeHandler, error, type, placeholder }) => {
     return (
         <div className="form-outline mb-4">
-            <label className="form-label font-monospace">{label}</label>
+            <label htmlFor={name} className="form-label font-monospace">
+                {label}
+            </label>
             <input
                 type={type}
                 className={

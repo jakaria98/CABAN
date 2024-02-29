@@ -1,7 +1,7 @@
 const DropdownInput = ({ label, name, options, changeHandler, error }) => {
     return (
         <div className="form-outline mb-4">
-            <label className="form-label font-monospace">{label}</label>
+            <label htmlFor={name} className="form-label font-monospace">{label}</label>
             <select
                 name={name}
                 id={name}

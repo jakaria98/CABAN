@@ -7,21 +7,13 @@ import useAuth from '../utils/useAuth';
 
 const LoginPage = () => {
     const navigate = useNavigate();
-
+    const { auth } = useAuth();
     // there is a bug in the code, the auth state is not working properly and app is re-rendering infinitely
-
     useEffect(() => {
-        const checkAuth = async () => {
-            const isAuthenticated = await useAuth();
-            console.log('LoginPage isAuthenticated:', isAuthenticated); // (1
-            // Move the navigation logic inside the checkAuth function
-            if (isAuthenticated) {
-                navigate('/dashboard');
-            }
-        };
-
-        checkAuth();
-    }, [navigate]);
+        if (auth) {
+            navigate('/dashboard');
+        }
+    }, [auth]);
 
     const [userLoginInfo, setUserLoginInfo] = useState({
         email: '',

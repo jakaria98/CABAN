@@ -25,13 +25,13 @@ router.post(
     register
 ); //check for logged in user and role
 
-//get me
-router.get('/me', checkLogin, getMe);
-
 //logout routes
 router.post('/logout',checkLogin, logout);
 
 //get all users
 router.get('/all', checkLogin, getAllUsers);
+
+//get me
+router.get('/me', checkLogin, getMe);
 
 module.exports = router;
