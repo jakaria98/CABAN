@@ -8,26 +8,29 @@ const MyInfoProvider = (props) => {
     const [myInfo, setMyInfo] = useState({});
     const [auth, setAuth] = useState(null); // Set initial value to null
 
-    const fetchMyInfo = async () => {
-        try {
-            const response = await Axios.get('http://localhost:3000/api/user/me', {
-                withCredentials: true,
+    const fetchMyInfo = () => {
+        Axios.get('http://localhost:3000/api/user/me', {
+            withCredentials: true,
+        })
+            .then((response) => {
+                console.log(response);
+                if (response.data && Object.keys(response.data).length > 0) {
+                    setMyInfo(response.data.user);
+                    setAuth(true);
+                } else {
+                    setAuth(false); // Set to false if not authenticated
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setAuth(false); // Set to false on error
             });
-            if (response.data && Object.keys(response.data).length > 0) {
-                setMyInfo(response.data.user);
-                setAuth(true);
-            } else {
-                setAuth(false); // Set to false if not authenticated
-            }
-        } catch (error) {
-            console.log(error);
-            setAuth(false); // Set to false on error
-        }
     };
 
     useEffect(() => {
         fetchMyInfo();
     }, []);
+    console.log(auth);
 
     // Render children only when auth status is determined
     return auth !== null ? (

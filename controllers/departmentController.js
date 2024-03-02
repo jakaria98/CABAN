@@ -2,18 +2,18 @@ const createError = require('http-errors');
 const Department = require('../models/Department');
 
 // Controller for getting all departments
-const getAllDepartment = async (req, res) => {
+const getAllDepartment = async (req, res, next) => {
     try {
         // Get all departments from the database
         const departments = await Department.find();
         res.status(200).json(departments);
     } catch {
-        createError(500, 'Internal Server Error');
+        next(error);
     }
 };
 
 // Controller for adding a new department
-const addDepartment = async (req, res) => {
+const addDepartment = async (req, res, next) => {
     try {
         const { name, postings } = req.body;
 
@@ -28,12 +28,12 @@ const addDepartment = async (req, res) => {
 
         res.status(201).json(savedDepartment);
     } catch (error) {
-        createError(500, 'Internal Server Error');
+        next(error);
     }
 };
 
 // Controller for updating a department by ID
-const updateDepartment = async (req, res) => {
+const updateDepartment = async (req, res, next) => {
     try {
         const { id } = req.params;
         const { name, postings: newPostings } = req.body;
@@ -43,7 +43,7 @@ const updateDepartment = async (req, res) => {
 
         // Check if the department with the given ID exists
         if (!existingDepartment) {
-            createError(404, 'Department not found');
+            throw createError(404, 'Department not found');
         }
 
         // Add new postings to the existing postings
@@ -57,7 +57,7 @@ const updateDepartment = async (req, res) => {
 
         res.status(200).json(updatedDepartment);
     } catch {
-        createError(500, 'Internal Server Error');
+        next(error);
     }
 };
 

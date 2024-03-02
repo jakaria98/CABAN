@@ -23,34 +23,39 @@ import { MyInfoProvider } from './contexts/myInfoContext.jsx';
 function App() {
     const { auth } = useAuth();
     return (
-        <MyInfoProvider>
-            <div>
-                {auth && <Sidebar />}
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
-                    <Route path="/*" element={<ProtectedRouter />}>
-                        <Route
-                            path="dashboard"
-                            element={
-                                <DepartmentProvider>
-                                    <AllUserInfoProvider>
-                                        <Dashboard />
-                                    </AllUserInfoProvider>
-                                </DepartmentProvider>
-                            }
-                        />
-                        <Route path="weather" element={<WeatherPage />} />
-                        <Route path="cargo" element={<Cargo />} />
-                        <Route path="charter" element={<Charter />} />
-                        <Route path="reporting" element={<Reporting />} />
-                        <Route path="vale" element={<Vale />} />
-                        <Route path="pax" element={<Pax />} />
-                        <Route path="sked" element={<Sked />} />
-                    </Route>
-                </Routes>
-            </div>
-        </MyInfoProvider>
+        <div>
+            {auth && <Sidebar />}
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
+                <Route
+                    path="/*"
+                    element={
+                        <MyInfoProvider>
+                            <ProtectedRouter />
+                        </MyInfoProvider>
+                    }
+                >
+                    <Route
+                        path="dashboard"
+                        element={
+                            <DepartmentProvider>
+                                <AllUserInfoProvider>
+                                    <Dashboard />
+                                </AllUserInfoProvider>
+                            </DepartmentProvider>
+                        }
+                    />
+                    <Route path="weather" element={<WeatherPage />} />
+                    <Route path="cargo" element={<Cargo />} />
+                    <Route path="charter" element={<Charter />} />
+                    <Route path="reporting" element={<Reporting />} />
+                    <Route path="vale" element={<Vale />} />
+                    <Route path="pax" element={<Pax />} />
+                    <Route path="sked" element={<Sked />} />
+                </Route>
+            </Routes>
+        </div>
     );
 }
 

@@ -13,11 +13,10 @@ const checkLogin = async (req, res, next) => {
             res.locals.loggedInUser = decoded;
             next();
         } else {
-            req.user = null;
             throw createError(401, 'You need to login to access this route');
         }
     } catch (error) {
-        createError(500, 'Server Error');
+        next(error);
     }
 };
 

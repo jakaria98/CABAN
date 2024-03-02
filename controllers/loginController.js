@@ -142,6 +142,7 @@ const getAllUsers = async (req, res, next) => {
 
 //get me
 const getMe = (req, res, next) => {
+    
     res.status(200).json({
         user: req.user,
     });
